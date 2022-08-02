@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+if [ "$1" != "-n" ]; then
+  # Interaction requested
+  while true; do
+    read -p $'Do you want to remake the postgres database?\n\nThis will re-run the init script, but will \e[31mdestroy all your postgres data\e[0m.\n\n[Y]es/[N]o: ' yn
+    case $yn in
+      [Yy]* ) docker rmi -f clairvoyance_postgres; docker-compose stop postgres; docker-compose rm postgres; docker-compose build --no-cache postgres; break;;
+      [Nn]* ) break;;
+      * ) echo "Please answer [y]es or [n]o.";;
+    esac
+  done
+fi
+
+
+cd ..
+docker network create -d bridge --subnet 192.168.0.0/24 --gateway 192.168.0.1 claritynet
+
+# You may need to build it the very first time
+# docker-compose build
+NO_PROXY=* docker-compose -f ./db-docker-compose.yml up

@@ -1,0 +1,18 @@
+{
+  "name": "clarityhub-world",
+  "version": "1.0.0",
+  "description": "Hello, world!",
+  "main": "index.js",
+  "author": "Ivan Montiel <idmontie@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "bash scripts/help",
+    "start:db": "bash scripts/network",
+    "start:services": "bash scripts/start",
+    "verify-hosts": "node ./scripts/verifyHosts.js",
+    "fast-start": "bash scripts/fast-start"
+  },
+  "devDependencies": {
+    "colors": "^1.1.2"
+  }
+}

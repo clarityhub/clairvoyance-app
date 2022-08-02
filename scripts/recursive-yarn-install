@@ -1,0 +1,54 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+cd ../repos/services
+
+for D in */; do
+    if [ -d "${D}" ]; then
+        if [ "${D}" != "node_modules/" ]; then
+          if [ -f "${D}/package.json" ]; then
+              (
+                cd "${D}" && yarn install \
+                   --no-progress \
+                   --pure-lockfile \
+                   --ignore-platform
+              )
+          fi
+        fi
+    fi
+done
+
+cd ../../repos/web
+
+for D in */; do
+    if [ -d "${D}" ]; then
+        if [ "${D}" != "node_modules/" ]; then
+          if [ -f "${D}/package.json" ]; then
+              (
+                cd "${D}" && yarn install \
+                   --no-progress \
+                   --pure-lockfile \
+                   --ignore-platform
+              )
+          fi
+        fi
+    fi
+done
+
+cd ../../repos/deps
+
+for D in */; do
+    if [ -d "${D}" ]; then
+        if [ "${D}" != "node_modules/" ]; then
+          if [ -f "${D}/package.json" ]; then
+              (
+                cd "${D}" && yarn install \
+                   --no-progress \
+                   --pure-lockfile \
+                   --ignore-platform
+              )
+          fi
+        fi
+    fi
+done

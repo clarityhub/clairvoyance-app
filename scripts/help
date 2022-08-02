@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Run \`yarn start:db\` in one terminal and \`yarn start:services\` (or \`yarn fast-start\`) in another"

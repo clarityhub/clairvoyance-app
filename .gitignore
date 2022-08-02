@@ -1,0 +1,18 @@
+/node_modules/
+/nginx/cert.key
+/nginx/cert.crt
+/nginx/configs/
+
+jwt-secret
+jwt-secret.pub
+jwt-secret.pem
+
+# Yarn
+yarn-error.log
+
+# Docker
+/data/
+
+# System files
+.DS_Store
+

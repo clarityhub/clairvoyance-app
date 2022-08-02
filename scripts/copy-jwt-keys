@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Move the asymmetric keys for generating and verifying JWTs.
+#
+# Auth will need both files. All other services should only
+# get the public key in a pem file.
+
+cd "$(dirname "$0")"
+cd ..
+
+# Move the private key to service-auth
+mv "./jwt-secret" "./repos/services/service-auth"
+
+# TODO make the DNS records generated from the ../services.js file
+
+# Copy the public key to all other services
+cp "./jwt-secret.pem" "./repos/services/service-analytics"
+cp "./jwt-secret.pem" "./repos/services/service-auth"
+cp "./jwt-secret.pem" "./repos/services/service-billing"
+cp "./jwt-secret.pem" "./repos/services/service-chat"
+cp "./jwt-secret.pem" "./repos/services/service-email"
+cp "./jwt-secret.pem" "./repos/services/service-ml"
+cp "./jwt-secret.pem" "./repos/services/service-rtc"
+cp "./jwt-secret.pem" "./repos/services/service-users"
+
+# Delete original public key
+rm "./jwt-secret.pub"
+rm "./jwt-secret.pem"
